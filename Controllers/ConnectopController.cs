@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MIFin.Api.Data;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -9,8 +10,11 @@ namespace MIFin.Api.Controllers {
     //[Route("api/[controller]")]
     [Route("[controller]/[action]")]
     public class ConnectopController : ControllerBase {
+        private readonly DataRepository _dataRepository;
 
-
+        public ConnectopController(DataRepository dataRepository) {
+            _dataRepository = dataRepository;
+        }
         [HttpGet]
         public async Task<GetPageMeResponse> GetPageMe() {
             var client = new RestClient("https://newapp.connectop.co.il/api/");
@@ -29,6 +33,14 @@ namespace MIFin.Api.Controllers {
             public int created { get; set; }
             public int total_users { get; set; }
         }
+
+
+        [HttpGet]
+        public string GetLoginByToken(string token) {
+            var login = _dataRepository.GetLoginByToken(token);
+            return login;
+        }
+
 
         [HttpGet]
         public IEnumerable<Product> GetProducts() {

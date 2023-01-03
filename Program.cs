@@ -1,6 +1,7 @@
 // using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 using Microsoft.OpenApi.Models;
+using MIFin.Api.Data;
 using MIFin.Api.Middleware;
 using Newtonsoft.Json.Serialization;
 
@@ -13,6 +14,9 @@ builder.Services.AddCors();
 builder.Services.AddControllers().AddNewtonsoftJson(options => {
     options.SerializerSettings.ContractResolver = new DefaultContractResolver();//disable automatic camelCase
 });
+
+builder.Services.AddScoped<DataRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {
@@ -31,10 +35,9 @@ builder.Services.AddSwaggerGen(c => {
         },
         In = ParameterLocation.Header
     };
-    var requirement = new OpenApiSecurityRequirement
-                    {
-                             { key, new List<string>() }
-                    };
+    var requirement = new OpenApiSecurityRequirement{{ key, new List<string>() }};
+    
+    
     c.AddSecurityRequirement(requirement);
 });
 
