@@ -2,6 +2,7 @@
 using MIFin.Api.Data;
 using Newtonsoft.Json;
 using RestSharp;
+using System.ComponentModel.DataAnnotations;
 
 namespace MIFin.Api.Controllers {
 
@@ -34,6 +35,12 @@ namespace MIFin.Api.Controllers {
             public int total_users { get; set; }
         }
 
+        [HttpPost]
+
+        void SendMessage(string login, string phone,string message ) {
+
+
+        }
 
         [HttpGet]
         public string GetLoginByToken(string token) {
