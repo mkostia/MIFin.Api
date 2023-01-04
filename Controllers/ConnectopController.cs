@@ -22,8 +22,13 @@ namespace MIFin.Api.Controllers {
             _connectopSvc = connectopSvc;
         }
         [HttpGet]
-        public async Task<GetPageMeResponse> GetPageMe() {
-           return await _connectopSvc.GetPageMe(); 
+        public async Task<GetPageMeResponse> GetPageMe(string login) {
+           return await _connectopSvc.GetPageMe(login); 
+        }
+        
+        [HttpGet]
+        public async Task<GetCatFactResponse> GetCatFact(string login) {
+           return await _connectopSvc.GetCatFact(login); 
         }
 
        

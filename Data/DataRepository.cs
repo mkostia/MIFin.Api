@@ -1,4 +1,7 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Dapper;
 
 namespace MIFin.Api.Data
@@ -24,11 +27,23 @@ namespace MIFin.Api.Data
             }
             return userName;
         }
+        public void p_WF_TraceLogInsert(int processId, int taskId, int stageId,string title, string traceMessage, string  login) {
+            var values = new { ProcessId = processId, TaskId = taskId, StageId= stageId, Title= title, TraceMessage= traceMessage, Login= login };
+            using (var connection = new SqlConnection(_connStr)) {
+                connection.Open();
+                connection.Execute("p_WF_TraceLogInsert", values, commandType: CommandType.StoredProcedure);
+            }
+        }
+
         //public IEnumerable<QuestionGetManyResponse> GetQuestions() {
         //    using (var connection = new SqlConnection(_connectionString)) {
         //    }
         //}
 
+
+        /*
+         [p_WF_TraceLogInsert](@ProcessId int,@TaskId int=null,@StageId int =null,@Title nvarchar(500) = null, @TraceMessage nvarchar(max),@Login varchar(50))
+         */
 
     }
 }

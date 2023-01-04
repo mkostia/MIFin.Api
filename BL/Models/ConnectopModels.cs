@@ -6,4 +6,9 @@
         public int created { get; set; }
         public int total_users { get; set; }
     }
+
+    public class GetCatFactResponse {
+        public string fact { get; set; }
+        public int length { get; set; }
+    }
 }
