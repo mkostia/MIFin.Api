@@ -15,3 +15,11 @@ https://stackoverflow.com/questions/71707592/how-to-use-session-in-net-core
 https://zetcode.com/csharp/dapper/
 
 https://github.com/dotnet/aspnetcore/blob/main/src/Security/samples/Cookies/Controllers/AccountController.cs
+
+
+Deploy to IIS
+https://stackify.com/how-to-deploy-asp-net-core-to-iis/
+https://weblog.west-wind.com/posts/2021/Jun/20/Locked-Files-When-Publishing-NET-Core-Apps-to-IIS-with-WebDeploy
+
+https://weblog.west-wind.com/posts/2022/Nov/07/Avoid-WebDeploy-Locking-Errors-to-IIS-with-Shadow-Copy-for-ASPNET-Core-Apps
+https://learn.microsoft.com/en-us/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy

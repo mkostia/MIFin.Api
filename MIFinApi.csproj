@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<WebPublishMethod>MSDeploy</WebPublishMethod>
+	<EnableMSDeployAppOffline>true</EnableMSDeployAppOffline>
   </PropertyGroup>
 
   <ItemGroup>
