@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MIFin.Api.BL;
+using MIFin.Api.BL.Models.Connectop;
 using MIFin.Api.Data;
 using Newtonsoft.Json;
 using RestSharp;
@@ -9,31 +11,22 @@ namespace MIFin.Api.Controllers {
     //https://restsharp.dev/usage.html#request-body
     //https://json2csharp.com/
     //[Route("api/[controller]")]
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class ConnectopController : ControllerBase {
         private readonly DataRepository _dataRepository;
-
-        public ConnectopController(DataRepository dataRepository) {
+        private readonly ConnectopSvc _connectopSvc;
+        public ConnectopController(DataRepository dataRepository, IConfiguration config
+            , ConnectopSvc connectopSvc
+            ) {
             _dataRepository = dataRepository;
+            _connectopSvc = connectopSvc;
         }
         [HttpGet]
         public async Task<GetPageMeResponse> GetPageMe() {
-            var client = new RestClient("https://newapp.connectop.co.il/api/");
-            //client.Timeout = -1;
-            var request = new RestRequest("page/me");
-            request.AddHeader("X-ACCESS-TOKEN", "1209859.XaDZyY9c6R627yF9x2WfJRmIm38ItSr1XcSkMWwOxV");
-            var response = await client.GetAsync<GetPageMeResponse>(request);
-            //Console.WriteLine(JsonConvert.SerializeObject(response));
-            return response!;
+           return await _connectopSvc.GetPageMe(); 
         }
 
-        public class GetPageMeResponse {
-            public int page_id { get; set; }
-            public string name { get; set; }
-            public bool active { get; set; }
-            public int created { get; set; }
-            public int total_users { get; set; }
-        }
+       
 
         [HttpPost]
 

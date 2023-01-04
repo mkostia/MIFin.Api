@@ -1,6 +1,7 @@
 // using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 using Microsoft.OpenApi.Models;
+using MIFin.Api.BL;
 using MIFin.Api.Data;
 using MIFin.Api.Middleware;
 using Newtonsoft.Json.Serialization;
@@ -16,6 +17,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options => {
 });
 
 builder.Services.AddScoped<DataRepository>();
+builder.Services.AddScoped<ConnectopSvc>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -48,8 +50,14 @@ if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseMiddleware<ApiKeyMiddleware>();
+//app.UseMiddleware<ApiKeyMiddleware>();
 app.UseHttpsRedirection();
+
+app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
 
 app.UseAuthorization();
 
