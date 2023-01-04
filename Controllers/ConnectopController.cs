@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.Mvc;
 using MIFin.Api.BL;
 using MIFin.Api.BL.Models.Connectop;
 using MIFin.Api.Data;
 using Newtonsoft.Json;
 using RestSharp;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Configuration;
 
 namespace MIFin.Api.Controllers {
 
@@ -15,11 +17,18 @@ namespace MIFin.Api.Controllers {
     public class ConnectopController : ControllerBase {
         private readonly DataRepository _dataRepository;
         private readonly ConnectopSvc _connectopSvc;
-        public ConnectopController(DataRepository dataRepository, IConfiguration config
+        private readonly IConfiguration _configuration;
+   
+
+        public ConnectopController(DataRepository dataRepository, IConfiguration configuration
             , ConnectopSvc connectopSvc
+            
             ) {
             _dataRepository = dataRepository;
             _connectopSvc = connectopSvc;
+            _configuration = configuration;
+            //var connStr = configuration["ConnectionStrings:MFin"]!;
+
         }
         [HttpGet]
         public async Task<GetPageMeResponse> GetPageMe(string login) {
@@ -31,7 +40,15 @@ namespace MIFin.Api.Controllers {
            return await _connectopSvc.GetCatFact(login); 
         }
 
-       
+        [HttpGet]
+        public IActionResult GetSettings() {
+
+            return Ok(new {
+                XApiKey = _configuration.GetValue<string>("XApiKey")
+        });
+        }
+
+
 
         [HttpPost]
 
