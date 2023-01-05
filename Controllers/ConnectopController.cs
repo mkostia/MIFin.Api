@@ -45,13 +45,13 @@ namespace MIFin.Api.Controllers {
            return await _connectopSvc.GetCatFact(userName); 
         }
 
-        [HttpGet]
-        public IActionResult GetSettings() {
+        //[HttpGet]
+        //public IActionResult GetSettings() {
 
-            return Ok(new {
-                XApiKey = _configuration.GetValue<string>("XApiKey")
-        });
-        }
+        //    return Ok(new {
+        //        XApiKey = _configuration.GetValue<string>("XApiKey")
+        //});
+        //}
 
 
 

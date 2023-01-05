@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="appsettings - Copy.Development.json" />
+    <Content Remove="appsettings - Copy.Production.json" />
+    <Content Remove="appsettings.Development.json" />
+    <Content Remove="appsettings.json" />
+    <Content Remove="appsettings.Production.json" />
+    <Content Remove="appsettings.ProductionBak.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.1" />
@@ -22,6 +31,13 @@
   <ItemGroup>
     <Folder Include="Data\Models\" />
     <Folder Include="Middleware\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.ProductionBak.json" />
+    <None Include="appsettings.Development.json" />
+    <None Include="appsettings.json" />
+    <None Include="appsettings.Production.json" />
   </ItemGroup>
 
 </Project>
