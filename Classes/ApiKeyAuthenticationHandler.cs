@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿
+using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MIFin.Api.Data;
 
+// https://www.endpointdev.com/blog/2022/06/implementing-authentication-in-asp.net-core-web-apis/#table-of-contents
 namespace MIFinApi.Authentication {
     public class ApiKeyAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions> {
         private const string API_KEY_HEADER = "ApiKey";
