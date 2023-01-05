@@ -17,6 +17,8 @@ namespace MIFin.Api.BL {
             _dataRepository = dataRepository;
         }
         public async Task<GetCatFactResponse> GetCatFact(string login) {
+
+
             _dataRepository.p_WF_TraceLogInsert(1, 1, 1, "GetPageMe", "Start", login);
             var client = new RestClient("https://catfact.ninja/");
             var request = new RestRequest("fact");

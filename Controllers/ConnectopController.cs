@@ -7,12 +7,16 @@ using Newtonsoft.Json;
 using RestSharp;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace MIFin.Api.Controllers {
 
     //https://restsharp.dev/usage.html#request-body
     //https://json2csharp.com/
-    //[Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = $"ApiKey")]
+    // [Authorize(AuthenticationSchemes = $"{JwtBearerDefaults.AuthenticationScheme},ApiKey")]
     [Route("api/[controller]/[action]")]
     public class ConnectopController : ControllerBase {
         private readonly DataRepository _dataRepository;
@@ -36,8 +40,9 @@ namespace MIFin.Api.Controllers {
         }
         
         [HttpGet]
-        public async Task<GetCatFactResponse> GetCatFact(string login) {
-           return await _connectopSvc.GetCatFact(login); 
+        public async Task<GetCatFactResponse> GetCatFact() {
+           var userName = User.FindFirst(ClaimTypes.Name).Value;
+           return await _connectopSvc.GetCatFact(userName); 
         }
 
         [HttpGet]
@@ -59,7 +64,7 @@ namespace MIFin.Api.Controllers {
 
         [HttpGet]
         public string GetLoginByToken(string token) {
-            var login = _dataRepository.GetLoginByToken(token);
+            var login = _dataRepository.GetUserNameByToken(token);
             return login;
         }
 

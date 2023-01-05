@@ -17,16 +17,18 @@ namespace MIFin.Api.Data
             _connStrSec = configuration["ConnectionStrings:MFinSec"]!;
         }
 
-        public string GetLoginByToken(string token)
+        public string GetUserNameByToken(string token)
         {
             string userName;
             using (var connection = new SqlConnection(_connStrSec)) {
 
                 connection.Open();
-                userName = connection.QueryFirst<string>("SELECT [UserName] FROM [dbo].[UsersTokens] where Token=@token", new { token });
+                userName = connection.QueryFirstOrDefault<string>("SELECT [UserName] FROM [dbo].[UsersTokens] where Token=@token", new { token });
             }
             return userName;
         }
+
+
         public void p_WF_TraceLogInsert(int processId, int taskId, int stageId,string title, string traceMessage, string  login) {
             var values = new { ProcessId = processId, TaskId = taskId, StageId= stageId, Title= title, TraceMessage= traceMessage, Login= login };
             using (var connection = new SqlConnection(_connStr)) {
