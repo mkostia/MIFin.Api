@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using MIFin.Api.BL.Models.Connectop;
 using MIFin.Api.Data;
+using MIFin.Api.Globals;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -39,8 +40,9 @@ namespace MIFin.Api.BL {
             _dataRepository.p_WF_TraceLogInsert(1, 1, 1, "GetPageMe", JsonConvert.SerializeObject(response), login);
             return response!;
         }
-        void SendMessage(string login, string phone, string message) {
-
+        public async Task<HandlerResult> SendMessage(string login, string phone, string message) {
+            HandlerResult res = new HandlerResult();
+            return res;
 
         }
     }

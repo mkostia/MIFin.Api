@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using MIFin.Api.Globals;
 
 namespace MIFin.Api.Controllers {
 
@@ -41,7 +42,8 @@ namespace MIFin.Api.Controllers {
         }
 
         [HttpPost]
-        void SendMessage(string login, string phone,string message ) {
+        public async Task<HandlerResult> SendMessage(string phone,string message ) {
+            return await _connectopSvc.SendMessage(this.GetUserName(), phone,message);
         }
 
         private string GetUserName() {
