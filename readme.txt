@@ -23,3 +23,7 @@ https://weblog.west-wind.com/posts/2021/Jun/20/Locked-Files-When-Publishing-NET-
 
 https://weblog.west-wind.com/posts/2022/Nov/07/Avoid-WebDeploy-Locking-Errors-to-IIS-with-Shadow-Copy-for-ASPNET-Core-Apps
 https://learn.microsoft.com/en-us/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy
+
+
+    //https://restsharp.dev/usage.html#request-body
+    //https://json2csharp.com/

@@ -31,7 +31,6 @@ namespace MIFin.Api.BL {
 
 
         public async Task<GetPageMeResponse> GetPageMe(string login) {
-            return null;
             _dataRepository.p_WF_TraceLogInsert(1, 1, 1, "GetPageMe", "Start", login);
             var client = new RestClient(_apiUrl);
             var request = new RestRequest("page/me");
